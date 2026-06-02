@@ -9,9 +9,18 @@ import SwiftUI
 
 @main
 struct AppTrackingApp: App {
+    
+
+    @State private var authSession = AuthSession(tokenProvider: AppServiceContainer().tokenProvider)
+    private let container = AppServiceContainer()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AppCoordinatorView()
+                .environment(authSession)
+                .task {
+                    await authSession.bootstrap()
+                }
         }
     }
 }
