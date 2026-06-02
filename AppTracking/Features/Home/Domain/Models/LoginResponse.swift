@@ -74,7 +74,7 @@ struct CompanyPivot: Codable {
 struct User: Codable {
     let id: Int
     let nombre, email: String
-    let emailVerifiedAt: JSONNull?
+    let emailVerifiedAt: String?
     let fechaCreacion, createdAt, updatedAt: String
     let profile: Profile
     let companies: [Company]
@@ -94,7 +94,7 @@ struct User: Codable {
 struct Profile: Codable {
     let id, userID: Int
     let apellido, phone: String
-    let avatarURL, fechaNacimiento, direccion: JSONNull?
+    let avatarURL, fechaNacimiento, direccion: String?
     let createdAt, updatedAt: String
 
     enum CodingKeys: String, CodingKey {
