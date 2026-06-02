@@ -7,7 +7,10 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct UnitView: View {
+    
+    @StateObject private var viewModel = UnitViewModel(unitRepository: AppServiceContainer().unitRepository)
+    
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -16,9 +19,12 @@ struct ContentView: View {
             Text("Hello, world!")
         }
         .padding()
+        .task {
+            await viewModel.loadUnits()
+        }
     }
 }
 
 #Preview {
-    ContentView()
+    UnitView()
 }
