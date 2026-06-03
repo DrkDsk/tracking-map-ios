@@ -6,5 +6,5 @@
 //
 
 protocol UnitServiceProtocol {
-    func getUnits() async throws -> UnitResponse
+    func getUnits() async throws -> [UnitData]
 }
