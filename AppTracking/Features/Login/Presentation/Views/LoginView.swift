@@ -8,7 +8,14 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @StateObject private var viewModel = LoginViewModel()
+    @StateObject private var viewModel: LoginViewModel
+    
+    private let authSession: AuthSession
+    
+    init(viewModel: LoginViewModel, authSession: AuthSession) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+        self.authSession = authSession
+    }
     
     var body: some View {
         VStack {
@@ -29,7 +36,11 @@ struct LoginView: View {
             Spacer().frame(height: 40)
             
             Button("Iniciar Sesión") {
-                
+                Task {
+                    try await viewModel.login()
+                    
+                    authSession.loginSucces()
+                }
             }
             .containerRelativeFrame(.horizontal) {
                 length,_ in
@@ -48,5 +59,10 @@ struct LoginView: View {
 }
 
 #Preview {
-    LoginView()
+    /*LoginView(
+            viewModel: LoginViewModel(
+                repository: MockLoginRepository()
+            ),
+            authSession: AuthSession(tokenProvider: <#any TokenProvider#>)
+        )*/
 }
