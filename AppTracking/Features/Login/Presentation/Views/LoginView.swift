@@ -18,35 +18,9 @@ struct LoginView: View {
     
     var body: some View {
         VStack {
-            TextField(
-                "",
-                text: $viewModel.username,
-                prompt: Text("Email").foregroundStyle(.white.opacity(0.4))
-            )
-            .padding(10)
-            .background(Color.gray.opacity(0.2))
-            .cornerRadius(10)
-            .overlay(
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color.yellow, lineWidth: 1)
-            )
-            .foregroundStyle(Color.white)
-            
+            AppTextField(title: "Email", text: $viewModel.username, type: .phone, validations: [.required, .email])
             Spacer().frame(height: 20)
-            
-            TextField(
-                "",
-                text: $viewModel.password,
-                prompt: Text("Contraseña").foregroundStyle(.white.opacity(0.4))
-            )
-            .padding(10)
-            .background(Color.gray.opacity(0.2))
-            .cornerRadius(10)
-            .overlay(
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color.yellow, lineWidth: 1)
-            )
-            .foregroundStyle(Color.white)
+            PasswordField(password: $viewModel.password)
             
             Spacer().frame(height: 40)
             

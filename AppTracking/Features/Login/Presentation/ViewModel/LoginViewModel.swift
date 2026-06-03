@@ -12,6 +12,7 @@ import Combine
 final class LoginViewModel : ObservableObject {
     @Published var username: String = ""
     @Published var password: String = ""
+    @Published var visiblePassword: Bool = false
     @Published var errorMessage: String?
     
     private let repository: LoginRepositoryProtocol
@@ -29,6 +30,10 @@ final class LoginViewModel : ObservableObject {
         } catch {
             self.errorMessage = error.localizedDescription
         }
+    }
+    
+    func toggleVisiblePassword() {
+        self.visiblePassword.toggle()
     }
     
 }

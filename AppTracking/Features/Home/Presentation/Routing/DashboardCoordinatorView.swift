@@ -14,10 +14,12 @@ struct DashboardCoordinatorView : View {
     
     var body : some View {
         switch dashboardSession.state {
-            case .loadUnits:
-            UnitView(viewModel: UnitViewModel(unitRepository: AppServiceContainer().unitRepository))
-            default:
-                EmptyView()
+        case .loadUnits:
+            UnitView(viewModel: UnitViewModel(unitRepository: AppServiceContainer().unitRepository), dashboardSession: dashboardSession)
+        case .profile:
+            ProfileView()
+        default:
+            EmptyView()
         }
     }
 }

@@ -22,10 +22,10 @@ struct UnitViewItem: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
-        .background(Color(.systemBackground))
+        .background(Color(.yellow))
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .overlay(
-            RoundedRectangle(cornerRadius: 16).stroke(Color.red, lineWidth: 2)
+            RoundedRectangle(cornerRadius: 16).stroke(Color.white, lineWidth: 4)
         )
         .shadow(color: .black.opacity(0.1), radius: 8, x: 0, y: 4)
     }
