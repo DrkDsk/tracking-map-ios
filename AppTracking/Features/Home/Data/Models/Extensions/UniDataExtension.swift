@@ -6,8 +6,8 @@
 //
 
 extension UnitData {
-    func toDomain() -> Unit {
-            Unit(
+    func toDomain() -> UnitEntity {
+            UnitEntity(
                 id: String(id),
                 brand: brand ?? "",
                 unitNumber: unitNumber

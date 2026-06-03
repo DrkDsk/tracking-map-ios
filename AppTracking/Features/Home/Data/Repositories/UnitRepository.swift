@@ -13,7 +13,7 @@ final class UnitRepository : UnitRepositoryProtocol {
         self.service = service
     }
     
-    func getUnits() async throws -> [Unit] {
+    func getUnits() async throws -> [UnitEntity] {
         let data = try await service.getUnits()
         
         return data.map { $0.toDomain()}
