@@ -9,7 +9,13 @@ import Foundation
 import Alamofire
 
 enum APIConfig {
-    static let baseURL = "http://192.168.1.64:8000"
+    static let baseURL : String = {
+        guard let url = Bundle.main.object(forInfoDictionaryKey: "API_BASE_URL") as? String else {
+            fatalError("APP URL NOT FOUND")
+        }
+        
+        return url
+    }()
 }
 
 final class HttpClient : HttpClientProtocol {
@@ -37,8 +43,6 @@ final class HttpClient : HttpClientProtocol {
         ) async throws -> T {
             
             let url = buildURL(endpoint)
-            
-            session.interceptor
 
             let dataRequest = session
                 .request(
@@ -50,7 +54,6 @@ final class HttpClient : HttpClientProtocol {
             let response = await dataRequest.serializingData().response
             
             if let data = response.data {
-                print(String(data: data, encoding: .utf8) ?? "")
                 let _ = try JSONSerialization.jsonObject(with: data)
                 //print("JSON:", json)
             }
@@ -60,7 +63,6 @@ final class HttpClient : HttpClientProtocol {
                 do {
                     return try JSONDecoder().decode(T.self, from: data)
                 } catch {
-                    print("error: \(error)")
                     throw error
                 }
 
