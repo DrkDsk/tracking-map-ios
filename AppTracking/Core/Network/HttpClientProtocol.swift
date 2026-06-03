@@ -13,4 +13,10 @@ protocol HttpClientProtocol {
             _ url: String,
             method: HTTPMethod
         ) async throws -> T
+    
+    func request<T: Decodable, B: Encodable>(
+            _ endpoint: String,
+            method: HTTPMethod,
+            body: B
+        ) async throws -> T
 }
