@@ -10,7 +10,8 @@ import Combine
 
 @MainActor
 class UnitViewModel: ObservableObject {
-    @Published var units: [UnitData]
+    @Published var units: [UnitEntity]
+    @Published var searchQuery: String = ""
     
     private let unitRepository: UnitRepositoryProtocol
     

@@ -9,9 +9,9 @@ import SwiftUI
 
 struct UnitViewItem: View {
     
-    private let unit: Unit
+    private let unit: UnitEntity
     
-    init(unit: Unit) {
+    init(unit: UnitEntity) {
         self.unit = unit
     }
     
@@ -24,10 +24,13 @@ struct UnitViewItem: View {
         .padding()
         .background(Color(.systemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 16))
+        .overlay(
+            RoundedRectangle(cornerRadius: 16).stroke(Color.red, lineWidth: 2)
+        )
         .shadow(color: .black.opacity(0.1), radius: 8, x: 0, y: 4)
     }
 }
 
 #Preview {
-    UnitViewItem(unit: Unit(id: "1", brand: "Nissan", unitNumber: "Test-100"))
+    UnitViewItem(unit: UnitEntity(id: "1", brand: "Nissan", unitNumber: "Test-100"))
 }
