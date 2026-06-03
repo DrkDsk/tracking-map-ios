@@ -9,23 +9,26 @@ import SwiftUI
 
 struct AppCoordinatorView: View {
     
-    @Environment(AuthSession.self)
-    private var authSession
+    @State private var coordinator : HomeCoordinator
     
-    @State private var dashboardSession = DashboardSession()
+    init() {
+        _coordinator = State(wrappedValue: HomeCoordinator(tokenStorage: AppServiceContainer().tokenStorage))
+    }
     
     var body: some View {
-        switch authSession.state {
-        case .loading:
-            EmptyView()
-        case .authenticated:
-            DashboardCoordinatorView()
-                .environment(dashboardSession)
-        case .unauthenticated:
-            LoginView(
-                viewModel: LoginViewModel(repository: AppServiceContainer().loginRepository),
-                authSession: authSession
-            )
+        Group {
+            switch coordinator.currentFlow {
+            case .login:
+                LoginView(
+                    viewModel: LoginViewModel(repository: AppServiceContainer().loginRepository)
+                )
+            case .home:
+                DashboardCoordinatorView()
+            }
+        }
+        .environment(coordinator)
+        .task {
+            await coordinator.checkAuthentication()
         }
     }
 }

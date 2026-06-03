@@ -9,17 +9,22 @@ import SwiftUI
 
 struct DashboardCoordinatorView : View {
     
-    @Environment(DashboardSession.self)
-    private var dashboardSession
+    @State private var dashboardCoordinator: DashboardCoordinator
+    
+    init() {
+        _dashboardCoordinator = State(wrappedValue: DashboardCoordinator())
+    }
     
     var body : some View {
-        switch dashboardSession.state {
-        case .loadUnits:
-            UnitView(viewModel: UnitViewModel(unitRepository: AppServiceContainer().unitRepository), dashboardSession: dashboardSession)
-        case .profile:
-            ProfileView()
-        default:
-            EmptyView()
+        NavigationStack(path: $dashboardCoordinator.path) {
+            UnitView(viewModel: UnitViewModel(unitRepository: AppServiceContainer().unitRepository))
+            .navigationDestination(for: DashboardRoute.self) { route in
+                switch route {
+                case .profile:
+                    ProfileView()
+                }
+            }
         }
+        .environment(dashboardCoordinator)
     }
 }

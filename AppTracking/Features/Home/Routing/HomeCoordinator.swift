@@ -1,22 +1,16 @@
 //
-//  AuthSession.swift
+//  HomeCoordinator.swift
 //  AppTracking
 //
-//  Created by Alfredo Palacios on 01/06/26.
+//  Created by Alfredo Palacios on 03/06/26.
 //
+
 import Foundation
 import Combine
 import SwiftUI
 
-enum AuthState {
-    case loading
-    case authenticated
-    case unauthenticated
-}
-
 @Observable
-final class AuthSession {
-    var state: AuthState = .loading
+final class HomeCoordinator: AppCoordinator {
     
     private var tokenStorage: TokenStorageProtocol
     
@@ -24,23 +18,24 @@ final class AuthSession {
         self.tokenStorage = tokenStorage
     }
     
-    func bootstrap() async {
-        
+    func checkAuthentication() async {
         let token = tokenStorage.getAccessToken()
         
         guard let token,!token.isEmpty else {
-            state = .unauthenticated
+            currentFlow = .login
             return
         }
         
-        state = .authenticated
+        currentFlow = .home
     }
     
     func loginSucces() {
-        state = .authenticated
+        path = NavigationPath()
+        currentFlow = .home
     }
     
     func logout() {
-        state = .unauthenticated
+        path = NavigationPath()
+        currentFlow = .login
     }
 }

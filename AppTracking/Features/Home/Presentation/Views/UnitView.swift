@@ -10,11 +10,11 @@ import SwiftUI
 struct UnitView: View {
     
     @StateObject private var viewModel : UnitViewModel
-    private let dashboardSession: DashboardSession
+    @Environment(DashboardCoordinator.self)
+    private var dashboardCoordinator
     
-    init(viewModel: UnitViewModel, dashboardSession: DashboardSession) {
+    init(viewModel: UnitViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
-        self.dashboardSession = dashboardSession
     }
     
     private let columns = [
@@ -29,7 +29,7 @@ struct UnitView: View {
                 AppTextField(title: "Buscar unidad", text: $viewModel.searchQuery, type: .text, validations:[])
                 
                 Button {
-                    dashboardSession.profile()
+                    dashboardCoordinator.profile()
                 } label: {
                     Image(systemName: "gearshape")
                         .imageScale(.large)

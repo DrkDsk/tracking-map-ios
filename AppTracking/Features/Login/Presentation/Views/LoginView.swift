@@ -9,11 +9,11 @@ import SwiftUI
 struct LoginView: View {
     
     @StateObject private var viewModel: LoginViewModel
-    private let authSession: AuthSession
+    @Environment(HomeCoordinator.self)
+    private var coordinator
     
-    init(viewModel: LoginViewModel, authSession: AuthSession) {
+    init(viewModel: LoginViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
-        self.authSession = authSession
     }
     
     var body: some View {
@@ -27,13 +27,10 @@ struct LoginView: View {
             Button("Iniciar Sesión") {
                 Task {
                     try await viewModel.login()
-                    authSession.loginSucces()
+                    coordinator.loginSucces()
                 }
             }
-            .containerRelativeFrame(.horizontal) {
-                length,_ in
-                length * 0.9
-            }
+            .frame(maxWidth: .infinity)
             .padding(.vertical, 12)
             .background(Color.yellow)
             .foregroundColor(Color.black)
@@ -48,14 +45,5 @@ struct LoginView: View {
 }
 
 #Preview {
-    LoginView(
-            viewModel: LoginViewModel(
-                repository:
-                    LoginRepository(
-                        service: AppServiceContainer().loginService,
-                        tokenStorage: AppServiceContainer().tokenStorage
-                    )
-            ),
-            authSession: AuthSession(tokenStorage: AppServiceContainer().tokenStorage)
-        )
+
 }
