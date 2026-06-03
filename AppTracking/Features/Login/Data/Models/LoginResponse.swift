@@ -12,25 +12,19 @@
 
 import Foundation
 
-// MARK: - Welcome
-struct LoginResponse: Codable {
-    let statusCode: Int
-    let message: String
-    let data: LoginData
-}
-
 // MARK: - DataClass
 struct LoginData: Codable {
     let accessToken, tokenType: String
     let expiresIn: Int
     let user: User
     let companies: [Company]
-
+    
     enum CodingKeys: String, CodingKey {
         case accessToken = "access_token"
         case tokenType = "token_type"
         case expiresIn = "expires_in"
-        case user, companies
+        case user
+        case companies
     }
 }
 
@@ -44,9 +38,15 @@ struct Company: Codable {
     let logoHorizontal: String
     let createdAt, updatedAt: String
     let pivot: CompanyPivot
-
+    
     enum CodingKeys: String, CodingKey {
-        case id, nombre, rfc, email, phone, active, logo
+        case id
+        case nombre
+        case rfc
+        case email
+        case phone
+        case active
+        case logo
         case colorHex = "color_hex"
         case color
         case logoHorizontal = "logo_horizontal"
@@ -60,7 +60,7 @@ struct Company: Codable {
 struct CompanyPivot: Codable {
     let userID, companyID, active: Int
     let createdAt, updatedAt: String
-
+    
     enum CodingKeys: String, CodingKey {
         case userID = "user_id"
         case companyID = "company_id"
@@ -79,14 +79,18 @@ struct User: Codable {
     let profile: Profile
     let companies: [Company]
     let roles: [Role]
-
+    
     enum CodingKeys: String, CodingKey {
-        case id, nombre, email
+        case id
+        case nombre
+        case email
         case emailVerifiedAt = "email_verified_at"
         case fechaCreacion = "fecha_creacion"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
-        case profile, companies, roles
+        case profile
+        case companies
+        case roles
     }
 }
 
@@ -96,11 +100,12 @@ struct Profile: Codable {
     let apellido, phone: String
     let avatarURL, fechaNacimiento, direccion: String?
     let createdAt, updatedAt: String
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case userID = "user_id"
-        case apellido, phone
+        case apellido
+        case phone
         case avatarURL = "avatar_url"
         case fechaNacimiento = "fecha_nacimiento"
         case direccion
@@ -114,9 +119,10 @@ struct Role: Codable {
     let id: Int
     let name, guardName, createdAt, updatedAt: String
     let pivot: RolePivot
-
+    
     enum CodingKeys: String, CodingKey {
-        case id, name
+        case id
+        case name
         case guardName = "guard_name"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
@@ -124,16 +130,13 @@ struct Role: Codable {
     }
 }
 
-// MARK: - RolePivot
 struct RolePivot: Codable {
     let modelType: String
     let modelID, roleID: Int
-
+    
     enum CodingKeys: String, CodingKey {
         case modelType = "model_type"
         case modelID = "model_id"
         case roleID = "role_id"
     }
 }
-
-// MARK: - Encode/decode helpers

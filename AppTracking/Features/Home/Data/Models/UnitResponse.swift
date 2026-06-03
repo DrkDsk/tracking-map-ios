@@ -6,11 +6,6 @@
 import Foundation
 
 // MARK: - Welcome
-struct UnitResponse: Codable {
-    let statusCode: Int
-    let message: String
-    let data: [UnitData]
-}
 
 // MARK: - Datum
 struct UnitData: Codable {
@@ -24,31 +19,19 @@ struct UnitData: Codable {
     let createdAt, updatedAt: String
     let fleetID: Int?
     let ftcloudID: String?
-}
-
-// MARK: - Device
-struct Device: Codable {
-    let channels: String
-    let uniqueID: String
-    let channelList: [ChannelList]
-    let deviceLabel: String
-}
-
-// MARK: - ChannelList
-struct ChannelList: Codable {
-    let enable, channelNo: Int
-    let channelAlias: String
-    let channelTypeList: [ChannelTypeList]
-}
-
-// MARK: - ChannelTypeList
-struct ChannelTypeList: Codable {
-    let channelTypeID: String
-    let channelTypeName: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id, status, model, year, brand
+        case subBrand = "sub_brand"
+        case unitNumber = "unit_number"
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+        case fleetID = "fleet_id"
+        case ftcloudID = "ftcloud_id"
+    }
 }
 
 enum Status: String, Codable {
     case available = "available"
     case enable = "ENABLE"
 }
-

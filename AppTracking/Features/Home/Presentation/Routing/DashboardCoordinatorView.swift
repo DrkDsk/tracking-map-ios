@@ -15,7 +15,7 @@ struct DashboardCoordinatorView : View {
     var body : some View {
         switch dashboardSession.state {
             case .loadUnits:
-                UnitView()
+            UnitView(viewModel: UnitViewModel(unitRepository: AppServiceContainer().unitRepository))
             default:
                 EmptyView()
         }

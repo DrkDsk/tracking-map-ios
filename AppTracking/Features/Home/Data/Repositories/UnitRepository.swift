@@ -13,10 +13,9 @@ final class UnitRepository : UnitRepositoryProtocol {
         self.service = service
     }
     
-    func getUnits() async throws -> [UnitData] {
-        let dto = try await service.getUnits()
-        let data = dto.data
+    func getUnits() async throws -> [UnitEntity] {
+        let data = try await service.getUnits()
         
-        return data
+        return data.map { $0.toDomain()}
     }
 }

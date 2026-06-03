@@ -2,11 +2,8 @@
 //  MockingUnitRepository.swift
 //  AppTracking
 //
-//  Created by Alfredo Palacios on 29/05/26.
+//  Created by Alfredo Palacios on 03/06/26.
 //
-
-import Foundation
-@testable import AppTracking
 
 final class MockingUnitRepository: UnitRepositoryProtocol {
     func getUnits() async throws -> [UnitEntity] {
@@ -15,6 +12,8 @@ final class MockingUnitRepository: UnitRepositoryProtocol {
             UnitEntity(id: "2", brand: "Nissan", unitNumber: "Test-100"),
             UnitEntity(id: "3", brand: "Nissan", unitNumber: "Test-100"),
             UnitEntity(id: "4", brand: "Nissan", unitNumber: "Test-100"),
+            UnitEntity(id: "5", brand: "Nissan", unitNumber: "Test-100"),
+            UnitEntity(id: "6", brand: "Nissan", unitNumber: "Test-100"),
         ]
     }
 }

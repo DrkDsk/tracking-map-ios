@@ -33,9 +33,22 @@
 		380CD0572FCA3E8D0035AE9A /* AppTrackingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppTrackingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		389F825E2FD0873B00DEAB0D /* Exceptions for "AppTracking" folder in "AppTracking" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 380CD03F2FCA3E8C0035AE9A /* AppTracking */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		380CD0422FCA3E8C0035AE9A /* AppTracking */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				389F825E2FD0873B00DEAB0D /* Exceptions for "AppTracking" folder in "AppTracking" target */,
+			);
 			path = AppTracking;
 			sourceTree = "<group>";
 		};
@@ -47,6 +60,11 @@
 		380CD05A2FCA3E8D0035AE9A /* AppTrackingUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = AppTrackingUITests;
+			sourceTree = "<group>";
+		};
+		389F82592FD0781100DEAB0D /* Config */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Config;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -80,6 +98,7 @@
 		380CD0372FCA3E8C0035AE9A = {
 			isa = PBXGroup;
 			children = (
+				389F82592FD0781100DEAB0D /* Config */,
 				380CD0422FCA3E8C0035AE9A /* AppTracking */,
 				380CD0502FCA3E8D0035AE9A /* AppTrackingTests */,
 				380CD05A2FCA3E8D0035AE9A /* AppTrackingUITests */,
@@ -122,6 +141,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				380CD0422FCA3E8C0035AE9A /* AppTracking */,
+				389F82592FD0781100DEAB0D /* Config */,
 			);
 			name = AppTracking;
 			packageProductDependencies = (
@@ -289,6 +309,8 @@
 /* Begin XCBuildConfiguration section */
 		380CD05F2FCA3E8D0035AE9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 389F82592FD0781100DEAB0D /* Config */;
+			baseConfigurationReferenceRelativePath = Dev.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -350,6 +372,8 @@
 		};
 		380CD0602FCA3E8D0035AE9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 389F82592FD0781100DEAB0D /* Config */;
+			baseConfigurationReferenceRelativePath = Dev.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -412,6 +436,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AppTracking/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -454,6 +479,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AppTracking/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

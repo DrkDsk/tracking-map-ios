@@ -10,8 +10,7 @@ import SwiftUI
 @main
 struct AppTrackingApp: App {
     
-
-    @State private var authSession = AuthSession(tokenProvider: AppServiceContainer().tokenProvider)
+    @State private var authSession = AuthSession(tokenStorage: AppServiceContainer().tokenStorage)
     private let container = AppServiceContainer()
     
     var body: some Scene {

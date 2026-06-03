@@ -6,6 +6,7 @@
 //
 
 import Alamofire
+
 final class UnitService : UnitServiceProtocol {
     private let httpClient: HttpClientProtocol
     
@@ -13,7 +14,9 @@ final class UnitService : UnitServiceProtocol {
         self.httpClient = httpClient
     }
     
-    func getUnits() async throws -> UnitResponse {
-        try await httpClient.request("api/all-units", method: .get)
+    func getUnits() async throws -> [UnitData] {
+        let response : ApiResponse<[UnitData]> = try await httpClient.request("api/all-units", method: .get)
+        
+        return response.data
     }
 }

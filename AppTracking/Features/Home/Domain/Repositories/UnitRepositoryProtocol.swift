@@ -6,5 +6,5 @@
 //
 
 protocol UnitRepositoryProtocol {
-    func getUnits() async throws -> [UnitData]
+    func getUnits() async throws -> [UnitEntity]
 }

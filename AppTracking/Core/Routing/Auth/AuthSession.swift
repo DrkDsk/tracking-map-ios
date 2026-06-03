@@ -18,14 +18,15 @@ enum AuthState {
 final class AuthSession {
     var state: AuthState = .loading
     
-    private var tokenProvider: TokenProvider
+    private var tokenStorage: TokenStorageProtocol
     
-    init(tokenProvider: TokenProvider) {
-        self.tokenProvider = tokenProvider
+    init(tokenStorage: TokenStorageProtocol) {
+        self.tokenStorage = tokenStorage
     }
     
     func bootstrap() async {
-        let token = tokenProvider.getToken()
+        
+        let token = tokenStorage.getAccessToken()
         
         guard let token,!token.isEmpty else {
             state = .unauthenticated
