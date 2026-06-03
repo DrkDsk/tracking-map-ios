@@ -10,9 +10,14 @@ import SwiftUI
 enum DashboardCoordinatorState {
     case loadUnits
     case showUnit(unitId: Int)
+    case profile
 }
 
 @Observable
 final class DashboardSession {
     var state: DashboardCoordinatorState = .loadUnits
+    
+    func profile() {
+        state = .profile
+    }
 }

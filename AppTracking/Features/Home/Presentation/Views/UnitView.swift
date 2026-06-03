@@ -10,42 +10,47 @@ import SwiftUI
 struct UnitView: View {
     
     @StateObject private var viewModel : UnitViewModel
+    private let dashboardSession: DashboardSession
     
-    init(viewModel: UnitViewModel) {
+    init(viewModel: UnitViewModel, dashboardSession: DashboardSession) {
         _viewModel = StateObject(wrappedValue: viewModel)
+        self.dashboardSession = dashboardSession
     }
     
     private let columns = [
-            GridItem(.flexible()),
-            GridItem(.flexible())
+        GridItem(.flexible()),
+        GridItem(.flexible())
     ]
     
     var body: some View {
         VStack {
             HStack(alignment: .center) {
                 
-                TextField("Buscar unidad", text: $viewModel.searchQuery)
+                AppTextField(title: "Buscar unidad", text: $viewModel.searchQuery, type: .text, validations:[])
                 
-                Image(systemName: "gearshape")
-                    .imageScale(.large)
-                    .foregroundStyle(.white)
+                Button {
+                    dashboardSession.profile()
+                } label: {
+                    Image(systemName: "gearshape")
+                        .imageScale(.large)
+                        .foregroundStyle(.white)
+                }
                     
             }.frame(maxWidth: .infinity, alignment: .center)
             
-            Spacer()
-                .frame(height: 10)
+            Spacer().frame(height: 30)
             
             ScrollView {
-                LazyVGrid(columns: columns, spacing: 12) {
+                LazyVGrid(columns: columns,spacing: 6) {
                     ForEach(viewModel.units) { unit in
-                        UnitViewItem(unit: unit)
+                        UnitViewItem(unit: unit).padding(4)
                     }
                 }
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .padding()
-        .background(Color.blue)
+        .background(.black)
         .task {
             await viewModel.loadUnits()
         }
@@ -53,7 +58,5 @@ struct UnitView: View {
 }
 
 #Preview {
-    UnitView(viewModel: UnitViewModel(
-        unitRepository: MockingUnitRepository()
-    ))
+    
 }
