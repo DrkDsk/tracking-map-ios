@@ -18,7 +18,7 @@ final class LoginRepository : LoginRepositoryProtocol {
         let dto = try await service.login(email, password)
         let data = dto
         
-        try tokenStorage.saveAccessToken(data.accessToken)
+        tokenStorage.saveAccessToken(data.accessToken)
         
         return data
     }
