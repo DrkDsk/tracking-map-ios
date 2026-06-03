@@ -22,12 +22,15 @@ struct UnitView: View {
     
     var body: some View {
         VStack {
-            HStack {
+            HStack(alignment: .center) {
+                
+                TextField("Buscar unidad", text: $viewModel.searchQuery)
+                
                 Image(systemName: "gearshape")
                     .imageScale(.large)
                     .foregroundStyle(.white)
                     
-            }.frame(maxWidth: .infinity, alignment: .trailing)
+            }.frame(maxWidth: .infinity, alignment: .center)
             
             Spacer()
                 .frame(height: 10)
@@ -50,5 +53,7 @@ struct UnitView: View {
 }
 
 #Preview {
-    UnitView(viewModel: UnitViewModel(unitRepository: AppServiceContainer().unitRepository))
+    UnitView(viewModel: UnitViewModel(
+        unitRepository: MockingUnitRepository()
+    ))
 }
