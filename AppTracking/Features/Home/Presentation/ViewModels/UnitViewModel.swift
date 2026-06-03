@@ -25,6 +25,5 @@ class UnitViewModel: ObservableObject {
         } catch {
             print(error)
         }
-        
     }
 }

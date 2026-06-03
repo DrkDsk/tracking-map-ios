@@ -9,7 +9,11 @@ import SwiftUI
 
 struct UnitView: View {
     
-    @StateObject private var viewModel = UnitViewModel(unitRepository: AppServiceContainer().unitRepository)
+    @StateObject private var viewModel : UnitViewModel
+    
+    init(viewModel: UnitViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
     
     var body: some View {
         VStack {
@@ -26,5 +30,5 @@ struct UnitView: View {
 }
 
 #Preview {
-    UnitView()
+    //UnitView()
 }
