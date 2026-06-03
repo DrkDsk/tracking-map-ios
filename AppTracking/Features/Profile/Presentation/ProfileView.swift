@@ -7,13 +7,17 @@
 import SwiftUI
 
 struct ProfileView : View {
+    
+    @Environment(DashboardCoordinator.self)
+    private var coordinator
+    
     var body: some View {
         Button {
-            
+            coordinator.pop()
         } label: {
             Image(systemName: "arrow.left")
                 .imageScale(.large)
-                .foregroundStyle(.white)
+                .foregroundStyle(.tint)
         }
     }
 }
